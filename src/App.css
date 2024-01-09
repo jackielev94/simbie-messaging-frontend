@@ -1,0 +1,51 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.card {
+  padding: 2em;
+  margin: 1rem;
+  width: 20rem;
+  height: 20rem;
+  text-align: center;
+}
+
+.GridContainer {
+  display: flex;
+}
+
+.logo {
+  height: 4rem;
+}
+
+.ThreadsHeader {
+  display: flex;
+  justify-content: space-between
+}
+
+.icon-container {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+
+}
+
+.icon {
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.thread {
+  margin-bottom: 1rem;
+}
+
+.thread:hover {
+  background-color: rgb(227, 225, 225);
+  box-shadow: 3px 3px 3px 3px blue ;
+}
+
+.ConversationsHead {
+  margin-right: 1rem;
+}
