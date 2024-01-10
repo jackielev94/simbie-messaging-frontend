@@ -1,5 +1,5 @@
 import { mapUnknownToAxiosError } from "../utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { CreateMessageInput, MessageWithPersonsDto, UpdateMessageInput } from "../types";
 
@@ -8,10 +8,11 @@ export interface UseMessages {
   messages: Array<MessageWithPersonsDto>;
   createMessage: (input: CreateMessageInput) => Promise<void>;
   updateMessage: (input: UpdateMessageInput) => Promise<void>;
+  reloadMessages: () => Promise<void>;
   error: string | undefined;
 }
 
-export const useMessages = (messageId?: string): UseMessages => {
+export const useMessages = (messageId?: string, threadId?: string): UseMessages => {
   const [loading, setLoading] = useState<boolean>(false);
   const [messages, setMessages] = useState<Array<MessageWithPersonsDto>>([]);
   const [error, setError] = useState<string | undefined>(undefined);
@@ -40,11 +41,30 @@ export const useMessages = (messageId?: string): UseMessages => {
     }
   };
 
+  const getMessagesByThreadId = async (): Promise<void> => {
+    setLoading(true);
+    try {
+      const response = await axios.get<Array<MessageWithPersonsDto>>(`http://localhost:3000/threads/${threadId}/messages`)
+      setMessages(response.data);
+    } catch (e) {
+      const err = mapUnknownToAxiosError(e);
+      setError(err.response?.data.message || "Error fetching messages.");
+    }
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    if (threadId) {
+      getMessagesByThreadId();
+    }
+  }, []);
+
   return {
     loading,
     messages,
     createMessage,
     updateMessage,
+    reloadMessages: getMessagesByThreadId,
     error,
   };
 };

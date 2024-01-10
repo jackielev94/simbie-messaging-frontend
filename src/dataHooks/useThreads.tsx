@@ -31,7 +31,7 @@ export const useThreads = (personId: string): UseThreads => {
     if (personId) {
       getThreadsByPersonId();
     }
-  });
+  }, []);
 
   return {
     loading,

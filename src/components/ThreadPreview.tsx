@@ -13,7 +13,7 @@ export default function ThreadPreview(props: { thread: ThreadWithMessagesDto }) 
   }
   return (
     <>
-      <Link to={`/threads/${props.thread.id}`} state={{thread: props.thread}}>
+      <Link to={`/threads/${props.thread.id}`} state={{threadId: props.thread.id}}>
         <Card className="thread" >
           <CardContent>
             <Box>

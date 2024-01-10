@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useMessages } from "../dataHooks";
 
 
-export default function SendMessageForm(props: {open: boolean, handleClose: () => void, threadId?: string, updateThreads: () => Promise<void>}) {
+export default function SendMessageForm(props: {open: boolean, handleClose: () => void, threadId?: string, updateData: () => Promise<void>}) {
   const [message, setMessage] = useState("");
 
   const { createMessage } = useMessages();
@@ -17,7 +17,7 @@ export default function SendMessageForm(props: {open: boolean, handleClose: () =
       senderId: "8a2f494f-7c11-4c31-9b9a-b4964af5d178",
       recipientId: "f40c0b3a-56bb-41ff-a61a-746e55ede257"
     });
-    await props.updateThreads();
+    await props.updateData();
   }
   return (
     <Dialog open={props.open} onClose={props.handleClose} fullWidth={true} maxWidth={'lg'}>

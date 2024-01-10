@@ -8,6 +8,7 @@ import { useState } from 'react';
 export default function ThreadList() {
   const [open, setOpen] = useState(false);
 
+  // TODO replace person id
   const { threads, reloadThreads } = useThreads('f40c0b3a-56bb-41ff-a61a-746e55ede257');
 
   const handleClickOpen = () => {
@@ -29,7 +30,7 @@ export default function ThreadList() {
       <h2>Conversations</h2>
       <div className="icon-container">
         <h2 className="ConversationsHead">Send a new message</h2>
-        <SendMessageForm open={open} handleClose={handleClose} updateThreads={updateThreads}/>
+        <SendMessageForm open={open} handleClose={handleClose} updateData={updateThreads}/>
         <MessageIcon
           onClick={handleClickOpen}
           sx={{
