@@ -11,7 +11,7 @@ export interface UseMessages {
   error: string | undefined;
 }
 
-export const useMessages = (messageId: string): UseMessages => {
+export const useMessages = (messageId?: string): UseMessages => {
   const [loading, setLoading] = useState<boolean>(false);
   const [messages, setMessages] = useState<Array<MessageWithPersonsDto>>([]);
   const [error, setError] = useState<string | undefined>(undefined);

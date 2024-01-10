@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "../App";
+import { Login } from "./Login";
 import Medications from "./Medications";
 import TestResults from "./TestResults";
 import Thread from "./Thread";
@@ -16,6 +17,7 @@ export default function RootRouter() {
         <Route path="test-results" element={<TestResults />} />
         <Route path="medications" element={<Medications />} />
         <Route path="threads/:id" element={<Thread />} />
+        <Route path="login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   )

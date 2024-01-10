@@ -1,17 +1,21 @@
 import { Typography } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAccount } from "../dataHooks";
 
 export function Login() {
-  const { login, account } = useAccount()
-
-  const [email, setemail] = useState("");
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { account, reloadAccount } = useAccount(email, password);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    await login({email, password});
-    console.log("account in component: ", account)
+    await reloadAccount()
+    if (account) {
+      navigate('/')
+    }
   }
 
   return (
@@ -21,14 +25,14 @@ export function Login() {
       <label>
           email
           <input
-            // value={email}
-            onChange={(event) => setemail(event.target.value)}
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
           />
         </label>
         <label>
-          To Do:
+          Password
           <input
-            // value={password}
+            value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>

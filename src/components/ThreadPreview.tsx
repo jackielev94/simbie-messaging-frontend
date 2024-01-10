@@ -4,17 +4,22 @@ import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { ThreadWithMessagesDto } from '../types';
+import moment from "moment";
 
 export default function ThreadPreview(props: { thread: ThreadWithMessagesDto }) {
+  function convertDate(date: string) {
+    const newDate = moment(date).format("MM/DD/YYYY");
+    return newDate;
+  }
   return (
     <>
-      <Link to={`/threads/${props.thread.id}`} state={{messages: props.thread.messages}}>
+      <Link to={`/threads/${props.thread.id}`} state={{thread: props.thread}}>
         <Card className="thread" >
           <CardContent>
             <Box>
-              <Typography variant="caption">{props.thread.messages[0].created}</Typography>
-              <Typography variant="h5">From {props.thread.messages[0].senderId}</Typography>
-              <Typography variant="body1">{props.thread.messages[0].content}</Typography>
+              <Typography variant="caption">{convertDate(props.thread.messages[0].created)}</Typography>
+              <Typography variant="h5">{props.thread.messages[0].content}</Typography>
+              <Typography variant="body1">From {props.thread.messages[0].sender.nameFirst}</Typography>
             </Box>
           </CardContent>
         </Card>

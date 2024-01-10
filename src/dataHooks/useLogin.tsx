@@ -1,27 +1,26 @@
 import { mapUnknownToAxiosError } from "../utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { AccountWithPersonDto, LoginInput, LoginSuccess } from "../types";
 
 export interface UseLogin {
   loading: boolean;
-  account?: AccountWithPersonDto;
-  login: (input: LoginInput) => Promise<void>
-  // reloadAccount: () => Promise<void>
+  account: AccountWithPersonDto;
+  // login: () => Promise<void>
+  reloadAccount: () => Promise<void>
   error: string | undefined;
 }
 
-export const useAccount = (): UseLogin => {
+export const useAccount = (email: string, password: string): UseLogin => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [account, setAccount] = useState<AccountWithPersonDto>();
+  const [account, setAccount] = useState<AccountWithPersonDto>(null);
   const [error, setError] = useState<string | undefined>(undefined);
 
-  const login = async (input: LoginInput): Promise<void> => {
+  const login = async () => {
     setLoading(true);
     try {
-      const response = await axios.get<LoginSuccess>(`http://localhost:3000/authentication/login?email=${input.email}&password=${input.password}`);
+      const response = await axios.get<LoginSuccess>(`http://localhost:3000/authentication/login?email=${email}&password=${password}`);
       setAccount(response.data.account);
-      console.log("account: ", account)
     } catch (e) {
       const err = mapUnknownToAxiosError(e);
       setError(err.response?.data.message || "Error fetching account.");
@@ -29,11 +28,16 @@ export const useAccount = (): UseLogin => {
     setLoading(false);
   };
 
+  useEffect(() => {
+    login()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [email, password])
+
   return {
     loading,
     account,
-    login,
-    // reloadAccount: login,
+    // login,
+    reloadAccount: login,
     error,
   };
 };

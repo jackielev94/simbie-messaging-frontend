@@ -21,7 +21,8 @@
 
 .ThreadsHeader {
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
+  color: white
 }
 
 .icon-container {
@@ -48,4 +49,5 @@
 
 .ConversationsHead {
   margin-right: 1rem;
+  color: white
 }
