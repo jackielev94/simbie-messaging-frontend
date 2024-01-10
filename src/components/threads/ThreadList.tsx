@@ -32,7 +32,7 @@ export default function ThreadList() {
       <h2>Conversations</h2>
       <div className="icon-container">
         <h2 className="ConversationsHead">Send a new message</h2>
-        <SendMessageForm open={open} handleClose={handleClose} updateData={updateThreads} personId={location.state.personId}/>
+        <SendMessageForm open={open} handleClose={handleClose} updateData={updateThreads} personId={location.state.personId} role={location.state.role}/>
         <MessageIcon
           onClick={handleClickOpen}
           sx={{
@@ -44,7 +44,7 @@ export default function ThreadList() {
     </div>
       {threads.map((thread: ThreadWithMessagesDto) => {
           return (
-            <ThreadPreview key={thread.id} thread={thread} personId={location.state.personId}/>
+            <ThreadPreview key={thread.id} thread={thread} personId={location.state.personId} role={location.state.role}/>
           )
       })}
     </>

@@ -3,14 +3,14 @@ import CardContent from '@mui/material/CardContent';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { ThreadWithMessagesDto } from '../../types';
+import { ThreadWithMessagesDto, TypeOfAccount } from '../../types';
 import convertDate from '../../utils/dates';
 
-export default function ThreadPreview(props: { thread: ThreadWithMessagesDto, personId: string }) {
+export default function ThreadPreview(props: { thread: ThreadWithMessagesDto, personId: string, role: TypeOfAccount }) {
 
   return (
     <>
-      <Link to={`/threads/${props.thread.id}`} state={{threadId: props.thread.id, personId: props.personId}}>
+      <Link to={`/threads/${props.thread.id}`} state={{threadId: props.thread.id, personId: props.personId, role: props.role}}>
         <Card className="thread" >
           <CardContent>
             <Box>
