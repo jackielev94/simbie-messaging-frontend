@@ -2,6 +2,7 @@ import { mapUnknownToAxiosError } from "../utils";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { AccountWithPersonDto, LoginSuccess } from "../types";
+import { API_URL } from "../constants";
 
 export interface UseLogin {
   loading: boolean;
@@ -19,7 +20,7 @@ export const useAccount = (email: string, password: string): UseLogin => {
   const login = async () => {
     setLoading(true);
     try {
-      const response = await axios.get<LoginSuccess>(`http://localhost:3000/authentication/login?email=${email}&password=${password}`);
+      const response = await axios.get<LoginSuccess>(`${API_URL}/authentication/login?email=${email}&password=${password}`);
       setAccount(response.data.account);
     } catch (e) {
       const err = mapUnknownToAxiosError(e);

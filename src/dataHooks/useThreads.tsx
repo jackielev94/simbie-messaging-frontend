@@ -2,6 +2,7 @@ import { mapUnknownToAxiosError } from "../utils";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ThreadWithMessagesDto } from "../types";
+import { API_URL } from "../constants";
 
 export interface UseThreads {
   loading: boolean;
@@ -18,7 +19,7 @@ export const useThreads = (personId: string): UseThreads => {
   const getThreadsByPersonId = async (): Promise<void> => {
     setLoading(true);
     try {
-      const response = await axios.get<Array<ThreadWithMessagesDto>>(`http://localhost:3000/persons/${personId}/threads`)
+      const response = await axios.get<Array<ThreadWithMessagesDto>>(`${API_URL}/persons/${personId}/threads`)
       setThreads(response.data);
     } catch (e) {
       const err = mapUnknownToAxiosError(e);

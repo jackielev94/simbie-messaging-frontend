@@ -2,6 +2,7 @@ import { mapUnknownToAxiosError } from "../utils";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { AccountWithPersonDto, TypeOfAccount } from "../types";
+import { API_URL } from "../constants";
 
 export interface UseAccounts {
   loading: boolean;
@@ -18,7 +19,7 @@ export const useAccounts = (role: TypeOfAccount): UseAccounts => {
   const getAccountsByRole = async (): Promise<void> => {
     setLoading(true);
     try {
-      const response = await axios.get<Array<AccountWithPersonDto>>(`http://localhost:3000/accounts?role=${role}`)
+      const response = await axios.get<Array<AccountWithPersonDto>>(`${API_URL}/accounts?role=${role}`)
       setAccounts(response.data);
     } catch (e) {
       const err = mapUnknownToAxiosError(e);
