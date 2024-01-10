@@ -1,11 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "../App";
 import { Login } from "./Login";
-import Medications from "./Medications";
-import TestResults from "./TestResults";
-import Thread from "./Thread";
-import ThreadList from "./ThreadList";
-import Visits from "./Visits";
+import { ThreadList, Thread } from "./threads";
+import { Visits, TestResults, Medications } from "./placeholders";
 
 export default function RootRouter() {
   return (

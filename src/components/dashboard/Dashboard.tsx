@@ -1,5 +1,5 @@
 import DashboardTile from "./DashboardTile";
-import { TypeOfDashboardTile } from "../types";
+import { TypeOfDashboardTile } from "../../types";
 import { useLocation } from "react-router-dom";
 
 export default function Dashboard() {

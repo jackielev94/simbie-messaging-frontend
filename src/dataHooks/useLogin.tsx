@@ -1,7 +1,7 @@
 import { mapUnknownToAxiosError } from "../utils";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { AccountWithPersonDto, LoginInput, LoginSuccess } from "../types";
+import { AccountWithPersonDto, LoginSuccess } from "../types";
 
 export interface UseLogin {
   loading: boolean;

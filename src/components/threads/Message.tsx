@@ -1,7 +1,7 @@
 import { Avatar, Divider, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material";
 import * as React from "react";
-import { MessageWithPersonsDto } from "../types";
-import convertDate from "../utils/dates";
+import { MessageWithPersonsDto } from "../../types";
+import convertDate from "../../utils/dates";
 
 export default function Message(props: { message: MessageWithPersonsDto }) {
   return (

@@ -1,7 +1,7 @@
 import MessageIcon from '@mui/icons-material/Message';
 import ThreadPreview from "./ThreadPreview";
-import { useThreads } from "../dataHooks";
-import { ThreadWithMessagesDto } from '../types';
+import { useThreads } from "../../dataHooks";
+import { ThreadWithMessagesDto } from '../../types';
 import SendMessageForm from './SendMessageForm';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';

@@ -31,6 +31,7 @@ export const useThreads = (personId: string): UseThreads => {
     if (personId) {
       getThreadsByPersonId();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {

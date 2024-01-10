@@ -1,1 +1,4 @@
-export { default as Dashboard } from "./Dashboard";
+
+export * from "./dashboard";
+export * from "./placeholders";
+export * from "./threads";

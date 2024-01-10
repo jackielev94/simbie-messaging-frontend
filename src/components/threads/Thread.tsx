@@ -1,11 +1,11 @@
 import { Button, List } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import { useLocation } from "react-router-dom";
-import { MessageWithPersonsDto } from "../types";
+import { MessageWithPersonsDto } from "../../types";
 import Message from "./Message"
 import { useState } from "react";
 import SendMessageForm from "./SendMessageForm";
-import { useMessages } from "../dataHooks";
+import { useMessages } from "../../dataHooks";
 
 export default function Thread( ) {
   const location = useLocation();

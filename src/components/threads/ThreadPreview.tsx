@@ -3,8 +3,8 @@ import CardContent from '@mui/material/CardContent';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { ThreadWithMessagesDto } from '../types';
-import convertDate from '../utils/dates';
+import { ThreadWithMessagesDto } from '../../types';
+import convertDate from '../../utils/dates';
 
 export default function ThreadPreview(props: { thread: ThreadWithMessagesDto, personId: string }) {
 

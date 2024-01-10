@@ -1,6 +1,6 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
 import { useState } from "react";
-import { useMessages } from "../dataHooks";
+import { useMessages } from "../../dataHooks";
 
 
 export default function SendMessageForm(props: {open: boolean, handleClose: () => void, threadId?: string, updateData: () => Promise<void>, personId: string}) {
