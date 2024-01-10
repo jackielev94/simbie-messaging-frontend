@@ -4,12 +4,14 @@ import { useThreads } from "../dataHooks";
 import { ThreadWithMessagesDto } from '../types';
 import SendMessageForm from './SendMessageForm';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export default function ThreadList() {
   const [open, setOpen] = useState(false);
 
-  // TODO replace person id
-  const { threads, reloadThreads } = useThreads('f40c0b3a-56bb-41ff-a61a-746e55ede257');
+  const location = useLocation();
+
+  const { threads, reloadThreads } = useThreads(location.state.personId);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -30,7 +32,7 @@ export default function ThreadList() {
       <h2>Conversations</h2>
       <div className="icon-container">
         <h2 className="ConversationsHead">Send a new message</h2>
-        <SendMessageForm open={open} handleClose={handleClose} updateData={updateThreads}/>
+        <SendMessageForm open={open} handleClose={handleClose} updateData={updateThreads} personId={location.state.personId}/>
         <MessageIcon
           onClick={handleClickOpen}
           sx={{
@@ -42,7 +44,7 @@ export default function ThreadList() {
     </div>
       {threads.map((thread: ThreadWithMessagesDto) => {
           return (
-            <ThreadPreview key={thread.id} thread={thread}/>
+            <ThreadPreview key={thread.id} thread={thread} personId={location.state.personId}/>
           )
       })}
     </>

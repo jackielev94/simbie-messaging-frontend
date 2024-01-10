@@ -51,3 +51,8 @@
   margin-right: 1rem;
   color: white
 }
+
+.empty {
+  height: 0px;
+  width: 0px;
+}

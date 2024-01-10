@@ -1,6 +1,7 @@
 import { Avatar, Divider, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material";
 import * as React from "react";
 import { MessageWithPersonsDto } from "../types";
+import convertDate from "../utils/dates";
 
 export default function Message(props: { message: MessageWithPersonsDto }) {
   return (
@@ -10,7 +11,7 @@ export default function Message(props: { message: MessageWithPersonsDto }) {
           <Avatar alt={props.message.sender.nameFirst.slice(0, 1).toUpperCase()} src="/" />
       </ListItemAvatar>
       <ListItemText
-        primary={"Subject to come"}
+        // primary={props.message.subject}
         secondary={
           <React.Fragment>
             <Typography
@@ -21,7 +22,12 @@ export default function Message(props: { message: MessageWithPersonsDto }) {
             >
               {props.message.sender.nameFirst}
             </Typography>
+            <Typography>
              {props.message.content}
+            </Typography>
+            <Typography variant="caption">
+             {convertDate(props.message.created)}
+            </Typography>
           </React.Fragment>
         }
       />

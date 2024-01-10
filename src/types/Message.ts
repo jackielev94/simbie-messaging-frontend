@@ -19,6 +19,7 @@ export type CreateMessageInput = {
   threadId: string | null;
   senderId: string;
   recipientId: string;
+  subject: string | null;
 }
 
 export type UpdateMessageInput = {

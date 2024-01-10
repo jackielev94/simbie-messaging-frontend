@@ -11,7 +11,6 @@ export default function Thread( ) {
   const location = useLocation();
   const [open, setOpen] = useState(false);
 
-  // TODO switch to reload messages
   const { messages, reloadMessages } = useMessages(undefined, location.state.threadId);
 
   const handleClickOpen = () => {
@@ -36,7 +35,7 @@ export default function Thread( ) {
       })}
     </List>
     <Button sx={{ width: '100%', height: '4rem' }} variant="contained" endIcon={<SendIcon />} onClick={handleClickOpen}>REPLY</Button>
-    <SendMessageForm open={open} handleClose={handleClose} threadId={location.state.threadId} updateData={updateMessages}/>
+    <SendMessageForm personId={location.state.personId} open={open} handleClose={handleClose} threadId={location.state.threadId} updateData={updateMessages}/>
     </>
   )
 }

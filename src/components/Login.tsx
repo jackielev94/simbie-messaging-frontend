@@ -14,7 +14,7 @@ export function Login() {
     e.preventDefault()
     await reloadAccount()
     if (account) {
-      navigate('/')
+      navigate('/', { state: { personId: account.personId }})
     }
   }
 

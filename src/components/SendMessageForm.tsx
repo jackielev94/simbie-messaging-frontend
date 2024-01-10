@@ -3,8 +3,9 @@ import { useState } from "react";
 import { useMessages } from "../dataHooks";
 
 
-export default function SendMessageForm(props: {open: boolean, handleClose: () => void, threadId?: string, updateData: () => Promise<void>}) {
+export default function SendMessageForm(props: {open: boolean, handleClose: () => void, threadId?: string, updateData: () => Promise<void>, personId: string}) {
   const [message, setMessage] = useState("");
+  const [subject, setSubject] = useState("");
 
   const { createMessage } = useMessages();
 
@@ -13,16 +14,29 @@ export default function SendMessageForm(props: {open: boolean, handleClose: () =
     await createMessage({
       content: message,
       threadId: props.threadId ?? null,
-      //TODO: get from person
-      senderId: "8a2f494f-7c11-4c31-9b9a-b4964af5d178",
-      recipientId: "f40c0b3a-56bb-41ff-a61a-746e55ede257"
+      senderId: props.personId,
+      //TODO: get from dropdown
+      recipientId: "f40c0b3a-56bb-41ff-a61a-746e55ede257",
+      subject: subject.length ? subject : null
     });
+    setMessage("");
+    setSubject("");
     await props.updateData();
   }
   return (
     <Dialog open={props.open} onClose={props.handleClose} fullWidth={true} maxWidth={'lg'}>
         <DialogTitle>Send message</DialogTitle>
         <DialogContent >
+        { !props.threadId ? <TextField
+          autoFocus
+          margin="dense"
+          id="name"
+          label="Subject"
+          fullWidth
+          variant="standard"
+          onChange={(e) => setSubject(e.target.value)}
+          /> : <div className='empty'></div>
+        }
           <TextField
             rows={5}
             autoFocus
