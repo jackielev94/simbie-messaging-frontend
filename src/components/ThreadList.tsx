@@ -1,31 +1,11 @@
-import Thread from "./Thread";
 import MessageIcon from '@mui/icons-material/Message';
-import { BrowserRouter, Route } from "react-router-dom";
 import ThreadPreview from "./ThreadPreview";
-
-const threads = [
-  {
-    id: "hi",
-    messages: [
-      {
-        content: "hi",
-        senderId: "blah",
-        recipientId: "bloo",
-        created: "12/1/2020"
-      }
-    ]
-  },
-  {
-    id: "hello",
-    messages: [
-      {
-        content: "hi"
-      }
-    ]
-  },
-]
+import { useThreads } from "../dataHooks";
+import { ThreadWithMessagesDto } from '../types';
 
 export default function ThreadList() {
+
+  const { threads } = useThreads('f40c0b3a-56bb-41ff-a61a-746e55ede257');
   return (
     <>
       <div className="ThreadsHeader">
@@ -40,15 +20,11 @@ export default function ThreadList() {
         />
       </div>
     </div>
-    {/* <BrowserRouter> */}
-      {threads.map((thread) => {
+      {threads.map((thread: ThreadWithMessagesDto) => {
           return (
-            // <Route path="threads/:id" element={<Thread messages={thread.messages}/>}>
-              <ThreadPreview key={thread.id} thread={thread}/>
-            // </Route>
+            <ThreadPreview key={thread.id} thread={thread}/>
           )
       })}
-    {/* </BrowserRouter> */}
     </>
   )
 }

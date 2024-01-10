@@ -1,28 +1,15 @@
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { MessageWithPersonsDto } from "../types";
 import Message from "./Message"
 
-const dummyMessages = [
-  {
-    content: "hi",
-    senderId: "blah",
-    recipientId: "bloo",
-    created: "12/1/2020"
-  },
-  {
-    content: "hello",
-    senderId: "blah",
-    recipientId: "bloo",
-    created: "12/1/2020"
-  }
-]
 export default function Thread( ) {
-  // use this later to get messages
-  // const { id } = useParams();
+  const location = useLocation()
+  const { messages } = location.state
   return (
     <>
-      {dummyMessages.map(message => {
+      {messages.map((message: MessageWithPersonsDto) => {
         return (
-          <Message message={message}/>
+          <Message key={message.id} message={message}/>
         )
       })}
     </>
