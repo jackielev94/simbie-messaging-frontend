@@ -1,5 +1,5 @@
-import { Button, InputLabel, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { Button, TextField, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from "../dataHooks";
 import { setLocalStorage } from "../utils";
@@ -12,15 +12,15 @@ export function Login() {
   const { account, reloadAccount, login } = useAccount(email, password);
 
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    login();
-    await reloadAccount()
+    e.preventDefault();
+    await login();
+    await reloadAccount();
     navigate('/dashboard')
     if (account) {
+      console.log("doid this work")
       setLocalStorage('personId', account.personId);
       setLocalStorage('role', account.role);
     }
-
   }
 
   return (

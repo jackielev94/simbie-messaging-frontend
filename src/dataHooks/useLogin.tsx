@@ -21,7 +21,9 @@ export const useAccount = (email: string, password: string): UseLogin => {
     setLoading(true);
     try {
       const response = await axios.get<LoginSuccess>(`${API_URL}/authentication/login?email=${email}&password=${password}`);
+      console.log("response: ", response)
       setAccount(response.data.account);
+      console.log("account: ", account)
     } catch (e) {
       const err = mapUnknownToAxiosError(e);
       setError(err.response?.data.message || "Error fetching account.");
@@ -29,10 +31,9 @@ export const useAccount = (email: string, password: string): UseLogin => {
     setLoading(false);
   };
 
-  // useEffect(() => {
-  //   login()
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [email, password])
+  useEffect(() => {
+    login();
+  }, [email, password])
 
   return {
     loading,
