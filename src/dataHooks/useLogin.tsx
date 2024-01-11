@@ -7,7 +7,7 @@ import { API_URL } from "../constants";
 export interface UseLogin {
   loading: boolean;
   account: AccountWithPersonDto;
-  // login: () => Promise<void>
+  login: () => Promise<void>
   reloadAccount: () => Promise<void>
   error: string | undefined;
 }
@@ -29,15 +29,15 @@ export const useAccount = (email: string, password: string): UseLogin => {
     setLoading(false);
   };
 
-  useEffect(() => {
-    login()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email, password])
+  // useEffect(() => {
+  //   login()
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [email, password])
 
   return {
     loading,
     account,
-    // login,
+    login,
     reloadAccount: login,
     error,
   };

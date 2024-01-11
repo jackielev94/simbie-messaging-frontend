@@ -9,16 +9,18 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { account, reloadAccount } = useAccount(email, password);
+  const { account, reloadAccount, login } = useAccount(email, password);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    login();
     await reloadAccount()
+    navigate('/dashboard')
     if (account) {
       setLocalStorage('personId', account.personId);
       setLocalStorage('role', account.role);
-      navigate('/dashboard', { state: { personId: account.personId, role: account.role }})
     }
+
   }
 
   return (

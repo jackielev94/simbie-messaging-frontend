@@ -5,15 +5,9 @@ import './App.css';
 
 function App() {
 
-  // const { account } = useAccount()
-
   return (
     <>
-      {/* {
-      account ? */}
       <Dashboard /> :
-      {/* <Login/>
-      } */}
     </>
   )
 }
