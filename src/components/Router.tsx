@@ -3,12 +3,15 @@ import App from "../App";
 import { Login } from "./Login";
 import { ThreadList, Thread } from "./threads";
 import { Visits, TestResults, Medications } from "./placeholders";
+import Header from "./Header";
 
 export default function RootRouter() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/dashboard" element={<App />} />
         <Route path="messages" element={<ThreadList />} />
         <Route path="visits" element={<Visits />} />
         <Route path="test-results" element={<TestResults />} />

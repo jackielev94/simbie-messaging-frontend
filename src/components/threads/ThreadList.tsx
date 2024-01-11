@@ -5,13 +5,14 @@ import { ThreadWithMessagesDto } from '../../types';
 import SendMessageForm from './SendMessageForm';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { getLocalStorage } from '../../utils';
 
 export default function ThreadList() {
   const [open, setOpen] = useState(false);
 
   const location = useLocation();
 
-  const { threads, reloadThreads } = useThreads(location.state.personId);
+  const { threads, reloadThreads } = useThreads(location.state?.personId ?? getLocalStorage('personId'))
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,14 +26,13 @@ export default function ThreadList() {
     reloadThreads()
   }
 
-
   return (
     <>
       <div className="ThreadsHeader">
       <h2>Conversations</h2>
       <div className="icon-container">
         <h2 className="ConversationsHead">Send a new message</h2>
-        <SendMessageForm open={open} handleClose={handleClose} updateData={updateThreads} personId={location.state.personId} role={location.state.role}/>
+        <SendMessageForm open={open} handleClose={handleClose} updateData={updateThreads} personId={location.state?.personId ?? getLocalStorage('personId')} role={location.state?.role ?? getLocalStorage('role')}/>
         <MessageIcon
           onClick={handleClickOpen}
           sx={{
@@ -44,7 +44,7 @@ export default function ThreadList() {
     </div>
       {threads.map((thread: ThreadWithMessagesDto) => {
           return (
-            <ThreadPreview key={thread.id} thread={thread} personId={location.state.personId} role={location.state.role}/>
+            <ThreadPreview key={thread.id} thread={thread} personId={location.state?.personId ?? getLocalStorage('personId')} role={location.state?.role ?? getLocalStorage('role')}/>
           )
       })}
     </>

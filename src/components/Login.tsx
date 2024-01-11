@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from "../dataHooks";
+import { setLocalStorage } from "../utils";
 
 export function Login() {
   const navigate = useNavigate();
@@ -14,7 +15,9 @@ export function Login() {
     e.preventDefault()
     await reloadAccount()
     if (account) {
-      navigate('/', { state: { personId: account.personId, role: account.role }})
+      setLocalStorage('personId', account.personId);
+      setLocalStorage('role', account.role);
+      navigate('/dashboard', { state: { personId: account.personId, role: account.role }})
     }
   }
 
