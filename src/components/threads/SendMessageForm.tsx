@@ -54,6 +54,9 @@ export default function SendMessageForm(props: {open: boolean, handleClose: () =
             value={recipient}
             label="Recipient"
             onChange={handleSelect}
+            sx={{
+              width: '20%',
+            }}
           >
             {accounts.map((account) => {
               return (

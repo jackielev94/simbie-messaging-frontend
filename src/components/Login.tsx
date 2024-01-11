@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Button, InputLabel, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from "../dataHooks";
@@ -23,23 +23,42 @@ export function Login() {
 
   return (
     <>
-      <Typography variant={"h1"}>Login to view your Dashboard</Typography>
+      <Typography
+        variant={"h4"}
+        sx={{
+          color: 'white',
+          my: '1%'
+        }}>
+          Login to view your Dashboard
+      </Typography>
       <form onSubmit={handleSubmit}>
-      <label>
-          email
-          <input
+        <div>
+          <TextField
+            sx={{
+              mr: '1%'
+            }}
+            className="login"
             value={email}
+            placeholder={'Email'}
             onChange={(event) => setEmail(event.target.value)}
           />
-        </label>
-        <label>
-          Password
-          <input
+          <TextField
+            sx={{
+              mr: '1%'
+            }}
+            className="login"
             value={password}
+            placeholder={'Password'}
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
-        <button type="submit">Submit</button>
+        </div>
+        <Button
+          sx={{
+            bgcolor: 'white',
+            mt: '1%'
+          }}
+          type="submit">Submit
+        </Button>
       </form>
     </>
   )

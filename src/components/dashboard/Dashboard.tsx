@@ -20,9 +20,9 @@ export default function Dashboard() {
           </>
          :
          <>
-          <DashboardTile type={TypeOfDashboardTile.PATIENT_LIST} url="/medications"/>
-          <DashboardTile type={TypeOfDashboardTile.UPCOMING_APPOINTMENTS} url="/test-results"/>
-          <DashboardTile type={TypeOfDashboardTile.STAFF_ASSIGNMENTS} url="/visits"/>
+          <DashboardTile type={TypeOfDashboardTile.PATIENT_LIST} url="/patient-list"/>
+          <DashboardTile type={TypeOfDashboardTile.UPCOMING_APPOINTMENTS} url="/upcoming-appointments"/>
+          <DashboardTile type={TypeOfDashboardTile.STAFF_ASSIGNMENTS} url="/staff-assignments"/>
           </>
         }
       </div>

@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 
-export default function Visits() {
+export default function PatientList() {
   return (
     <>
       <Typography
@@ -10,7 +10,7 @@ export default function Visits() {
           mt: '3%'
         }}
       >
-        Visits Page Under Construction
+        Patient List Page Under Construction
       </Typography>
     </>
   )

@@ -7,12 +7,13 @@
   padding: 2em;
   margin: 1rem;
   width: 20rem;
-  height: 20rem;
+  height: 15rem;
   text-align: center;
 }
 
 .GridContainer {
   display: flex;
+  margin-top: 1%
 }
 
 .logo {
@@ -32,7 +33,6 @@
 
 .icon-container {
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
 
 }
@@ -60,4 +60,9 @@
 .empty {
   height: 0px;
   width: 0px;
+}
+
+.login {
+  background-color: white;
+  margin-right: 1rem;
 }
