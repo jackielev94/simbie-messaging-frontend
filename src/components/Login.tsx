@@ -17,7 +17,6 @@ export function Login() {
     await reloadAccount();
     navigate('/dashboard')
     if (account) {
-      console.log("doid this work")
       setLocalStorage('personId', account.personId);
       setLocalStorage('role', account.role);
     }
